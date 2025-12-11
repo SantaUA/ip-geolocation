@@ -23,9 +23,7 @@ export const IPEntryRow = memo(({
 
   const [entryIP, setEntryIP] = useState(entry?.ipAddress || '');
 
-  if (!entry) return null;
-
-  const onInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const onInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEntryIP(e.target.value);
   }, []);
 

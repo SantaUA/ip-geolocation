@@ -4,11 +4,19 @@ import { fetchIPGeolocation } from '../services';
 
 type Listener = () => void;
 
+const DEFAULT_ENTITY = {
+  id: 1,
+  ipAddress: '',
+  isLoading: false,
+  error: null,
+  data: null,
+};
+
 export class IPLookupStore {
-  private entries = new Map<number, IPEntry>();
+  private entries = new Map<number, IPEntry>([[DEFAULT_ENTITY.id, DEFAULT_ENTITY]]);
   private listeners = new Map<number, Set<Listener>>();
   private globalListeners = new Set<Listener>();
-  private nextId = 1;
+  private lastID = DEFAULT_ENTITY.id;
   private cachedEntries = new Map<number, IPEntry>();
   private cachedAllEntries: IPEntry[] | null = null;
 
@@ -40,14 +48,14 @@ export class IPLookupStore {
     this.globalListeners.forEach(callback => callback());
   }
 
-  getEntry(id: number): IPEntry | undefined {
+  getEntry(id: number): IPEntry {
     if (!this.cachedEntries.has(id)) {
       const entry = this.entries.get(id);
       if (entry) {
         this.cachedEntries.set(id, entry);
       }
     }
-    return this.cachedEntries.get(id);
+    return this.cachedEntries.get(id) || DEFAULT_ENTITY;
   }
 
   getAllEntries(): IPEntry[] {
@@ -58,16 +66,17 @@ export class IPLookupStore {
   }
 
   addEntry(): void {
-    const newId = this.nextId++;
+    this.lastID += 1;
+
     const newEntry: IPEntry = {
-      id: newId,
+      id: this.lastID,
       ipAddress: '',
       isLoading: false,
       error: null,
       data: null,
     };
 
-    this.entries.set(newId, newEntry);
+    this.entries.set(this.lastID, newEntry);
     this.notifyAll();
   }
 
