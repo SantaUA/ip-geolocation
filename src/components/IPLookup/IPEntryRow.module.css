@@ -1,3 +1,7 @@
+:root {
+  --result-block-bidth: 134px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -51,6 +55,7 @@
   align-items: center;
   gap: 8px;
   margin-left: auto;
+  width: var(--result-block-bidth);
 }
 
 .spinner {
@@ -77,7 +82,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 134px;
+  width: var(--result-block-bidth);
   justify-content: space-between;
 }
 
