@@ -1,4 +1,4 @@
-import { IPLookupProvider } from './contexts';
+import { IPLookupProvider } from './contexts/IPLookupProvider';
 import { IPLookup } from './components/IPLookup';
 
 function App() {

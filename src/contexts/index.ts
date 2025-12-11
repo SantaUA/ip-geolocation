@@ -1,2 +1,1 @@
-export { IPLookupProvider, useIPLookupStore } from './IPLookupContext';
-
+export { useIPLookupStore } from './useIPLookupStore';

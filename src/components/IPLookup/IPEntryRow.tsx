@@ -1,5 +1,5 @@
 import { memo, useCallback, useState, useSyncExternalStore } from 'react';
-import { useIPLookupStore } from '../../contexts';
+import { useIPLookupStore } from '../../contexts/useIPLookupStore';
 import { CountryFlag } from '../CountryFlag';
 import { TimezoneClock } from '../TimezoneClock';
 import styles from './IPEntryRow.module.css';
