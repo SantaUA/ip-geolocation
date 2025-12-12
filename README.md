@@ -8,4 +8,5 @@ To run application:
 
 - node 22+ required
 - run `npm i`
-- to start application locally `npm run dev`
+- to start application locally `npm run dev` 
+- to run tests `npm run test`
